@@ -22,6 +22,7 @@
 #define bitMotor3B 7
 #define bitMotor4A 0
 #define bitMotor4B 6
+#define ledFarol 50
 
 Servo myservo;
 
@@ -46,7 +47,7 @@ void setup() {
   Serial.begin(9600);
   servo2.write(5);
   servo1.write(5);
-
+  pinMode(ledFarol, OUTPUT);  
 }
 //char cha;
 void loop() {
@@ -106,6 +107,12 @@ void loop() {
       ci74HC595Write(bitMotor3B, HIGH);
       delayPWM(key);
     }
+    if (key == 'L') {
+       digitalWrite(ledFarol, HIGH);
+    }
+    if (key == 'D') {
+       digitalWrite(ledFarol, LOW);
+    }    
   }
 }
 void ci74HC595Write(byte pino, bool estado) {
